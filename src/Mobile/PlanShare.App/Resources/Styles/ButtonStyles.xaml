@@ -2,12 +2,13 @@
 <ResourceDictionary
     x:Class="PlanShare.App.Resources.Styles.ButtonStyles"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fontFamily="clr-namespace:PlanShare.App.Constants">
     <Style TargetType="Button">
         <Setter Property="CornerRadius" Value="20" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="HeightRequest" Value="60" />
-        <Setter Property="FontFamily" Value="RalewayBlack" />
+        <Setter Property="FontFamily" Value="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}" />
         <Setter Property="BackgroundColor" Value="Black" />
         <Setter Property="TextColor" Value="White" />
     </Style>
