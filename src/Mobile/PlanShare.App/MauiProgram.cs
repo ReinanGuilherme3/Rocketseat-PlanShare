@@ -1,22 +1,23 @@
-﻿namespace PlanShare.App
-{
-    public static class MauiProgram
-    {
-        public static MauiApp CreateMauiApp()
-        {
-            var builder = MauiApp.CreateBuilder();
-            builder
-                .UseMauiApp<App>()
-                .ConfigureFonts(fonts =>
-                {
-                    fonts.AddFont("Raleway-Black.ttf", "RalewayBlack");
-                    fonts.AddFont("Raleway-Regular.ttf", "RalewayRegular");
-                    fonts.AddFont("Raleway-Thin.ttf", "RalewayThin");
-                    fonts.AddFont("WorkSans-Black.ttf", "WorkSansBlack");
-                    fonts.AddFont("WorkSans-Regular.ttf", "WorkSansRegular");
-                });
+﻿using PlanShare.App.Constants;
 
-            return builder.Build();
-        }
+namespace PlanShare.App;
+
+public static class MauiProgram
+{
+    public static MauiApp CreateMauiApp()
+    {
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp<App>()
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("Raleway-Regular.ttf", FontFamily.MAIN_FONT_REGULAR);
+                fonts.AddFont("Raleway-Black.ttf", FontFamily.MAIN_FONT_BLACK);
+                fonts.AddFont("Raleway-Thin.ttf", FontFamily.MAIN_FONT_THIN);
+                fonts.AddFont("WorkSans-Regular.ttf", FontFamily.SECONDARY_FONT_REGULAR);
+                fonts.AddFont("WorkSans-Black.ttf", FontFamily.SECONDARY_FONT_BLACK);
+            });
+
+        return builder.Build();
     }
 }
