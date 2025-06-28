@@ -13,14 +13,7 @@ public static class MauiProgram
         builder
             .UseMauiApp<App>()
             .AddPages()
-            .ConfigureFonts(fonts =>
-            {
-                fonts.AddFont("Raleway-Regular.ttf", FontFamily.MAIN_FONT_REGULAR);
-                fonts.AddFont("Raleway-Black.ttf", FontFamily.MAIN_FONT_BLACK);
-                fonts.AddFont("Raleway-Thin.ttf", FontFamily.MAIN_FONT_THIN);
-                fonts.AddFont("WorkSans-Regular.ttf", FontFamily.SECONDARY_FONT_REGULAR);
-                fonts.AddFont("WorkSans-Black.ttf", FontFamily.SECONDARY_FONT_BLACK);
-            });
+            .AddFonts();
 
         return builder.Build();
     }
@@ -31,5 +24,17 @@ public static class MauiProgram
         Routing.RegisterRoute(RoutePages.USER_REGISTER_ACCOUNT_PAGE, typeof(RegisterUserAccountPage));
 
         return appBuilder;
+    }
+
+    private static void AddFonts(this MauiAppBuilder appBuilder)
+    {
+        appBuilder.ConfigureFonts(fonts =>
+        {
+            fonts.AddFont("Raleway-Regular.ttf", FontFamily.MAIN_FONT_REGULAR);
+            fonts.AddFont("Raleway-Black.ttf", FontFamily.MAIN_FONT_BLACK);
+            fonts.AddFont("Raleway-Thin.ttf", FontFamily.MAIN_FONT_THIN);
+            fonts.AddFont("WorkSans-Regular.ttf", FontFamily.SECONDARY_FONT_REGULAR);
+            fonts.AddFont("WorkSans-Black.ttf", FontFamily.SECONDARY_FONT_BLACK);
+        });
     }
 }
