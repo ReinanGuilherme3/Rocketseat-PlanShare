@@ -10,9 +10,12 @@
 
         <Label Margin="0,20,0,50" Text="Comande sua rotina com facilidade—porque você merece mais tempo para o que ama!" />
 
-        <component:EntryAndLabelComponent />
+        <component:EntryAndLabelComponent Title="Nome" Placeholder="Reinan Guilherme" />
 
-        <component:EntryAndLabelComponent />
+        <component:EntryAndLabelComponent
+            Title="Email"
+            Keyboard="Email"
+            Placeholder="reinan.guilherme@gmail.com" />
 
         <component:EntryAndLabelComponent />
 
