@@ -32,7 +32,7 @@ public static class MauiProgram
         {
             fonts.AddFont("Raleway-Regular.ttf", FontFamily.MAIN_FONT_REGULAR);
             fonts.AddFont("Raleway-Black.ttf", FontFamily.MAIN_FONT_BLACK);
-            fonts.AddFont("Raleway-Thin.ttf", FontFamily.MAIN_FONT_THIN);
+            fonts.AddFont("Raleway-Light.ttf", FontFamily.MAIN_FONT_LIGHT);
             fonts.AddFont("WorkSans-Regular.ttf", FontFamily.SECONDARY_FONT_REGULAR);
             fonts.AddFont("WorkSans-Black.ttf", FontFamily.SECONDARY_FONT_BLACK);
         });
