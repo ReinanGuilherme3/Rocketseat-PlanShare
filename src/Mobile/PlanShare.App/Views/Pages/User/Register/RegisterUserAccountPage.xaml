@@ -17,7 +17,7 @@
             Keyboard="Email"
             Placeholder="reinan.guilherme@gmail.com" />
 
-        <component:EntryAndLabelComponent />
+        <component:EntryAndLabelPasswordComponent Title="Senha" />
 
 
         <Button
