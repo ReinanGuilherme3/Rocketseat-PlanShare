@@ -69,6 +69,30 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Resources\ResourceTexts.pt-BR.Designer.cs">
+	    <DependentUpon>ResourceTexts.pt-BR.resx</DependentUpon>
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	  </Compile>
+	  <Compile Update="Resources\ResourceTexts.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>ResourceTexts.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Resources\ResourceTexts.pt-BR.resx">
+	    <LastGenOutput>ResourceTexts.pt-BR.Designer.cs</LastGenOutput>
+	    <Generator>ResXFileCodeGenerator</Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\ResourceTexts.resx">
+	    <Generator>PublicResXFileCodeGenerator</Generator>
+	    <LastGenOutput>ResourceTexts.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Resources\Styles\ButtonStyles.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
