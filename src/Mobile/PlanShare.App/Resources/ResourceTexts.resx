@@ -120,4 +120,7 @@
   <data name="LOGIN_WITH_EMAIL_PASSWORD" xml:space="preserve">
     <value>Login With Email and Password</value>
   </data>
+  <data name="SUBTITLE_REGISTER_ACCOUNT" xml:space="preserve">
+    <value>Take control of your routine with ease—because you deserve more time for the things you love!</value>
+  </data>
 </root>

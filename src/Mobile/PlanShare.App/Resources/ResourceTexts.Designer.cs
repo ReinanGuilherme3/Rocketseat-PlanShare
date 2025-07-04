@@ -68,5 +68,14 @@ namespace PlanShare.App.Resources {
                 return ResourceManager.GetString("LOGIN_WITH_EMAIL_PASSWORD", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Take control of your routine with ease—because you deserve more time for the things you love!.
+        /// </summary>
+        public static string SUBTITLE_REGISTER_ACCOUNT {
+            get {
+                return ResourceManager.GetString("SUBTITLE_REGISTER_ACCOUNT", resourceCulture);
+            }
+        }
     }
 }
