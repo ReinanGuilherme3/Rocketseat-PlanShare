@@ -5,5 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
         <Setter Property="Padding" Value="30,40,30,40" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PAGE_BACKGROUND_COLOR_LIGHT}, Dark={StaticResource PAGE_BACKGROUND_COLOR_DARK}}" />
     </Style>
 </ResourceDictionary>
