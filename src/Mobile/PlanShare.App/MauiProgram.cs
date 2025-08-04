@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using PlanShare.App.Constants;
 using PlanShare.App.Navigation;
+using PlanShare.App.Resources.Styles.Handlers;
 using PlanShare.App.Views.Pages.Login.DoLogin;
 using PlanShare.App.Views.Pages.User.Register;
 
@@ -15,7 +16,8 @@ public static class MauiProgram
             .UseMauiApp<App>()
             .UseMauiCommunityToolkit()
             .AddPages()
-            .AddFonts();
+            .AddFonts()
+            .ConfigureHandlers();
 
         return builder.Build();
     }
@@ -28,15 +30,23 @@ public static class MauiProgram
         return appBuilder;
     }
 
-    private static void AddFonts(this MauiAppBuilder appBuilder)
+    private static MauiAppBuilder AddFonts(this MauiAppBuilder appBuilder)
     {
-        appBuilder.ConfigureFonts(fonts =>
+        return appBuilder.ConfigureFonts(fonts =>
         {
             fonts.AddFont("Raleway-Regular.ttf", FontFamily.MAIN_FONT_REGULAR);
             fonts.AddFont("Raleway-Black.ttf", FontFamily.MAIN_FONT_BLACK);
             fonts.AddFont("Raleway-Light.ttf", FontFamily.MAIN_FONT_LIGHT);
             fonts.AddFont("WorkSans-Regular.ttf", FontFamily.SECONDARY_FONT_REGULAR);
             fonts.AddFont("WorkSans-Black.ttf", FontFamily.SECONDARY_FONT_BLACK);
+        });
+    }
+
+    private static MauiAppBuilder ConfigureHandlers(this MauiAppBuilder appBuilder)
+    {
+        return appBuilder.ConfigureMauiHandlers(_ =>
+        {
+            CustomEntryHandler.Customize();
         });
     }
 }
