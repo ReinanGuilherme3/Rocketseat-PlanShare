@@ -3,10 +3,10 @@ using ViewModels.Pages.OnBoarding;
 
 public partial class OnBoardingPage : ContentPage
 {
-    public OnBoardingPage()
+    public OnBoardingPage(OnBoardingViewModel viewModel)
     {
         InitializeComponent();
 
-        BindingContext = new OnBoardingViewModel();
+        BindingContext = viewModel;
     }
 }
