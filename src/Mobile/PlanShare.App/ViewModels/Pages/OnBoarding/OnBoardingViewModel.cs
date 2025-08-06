@@ -5,21 +5,28 @@ namespace PlanShare.App.ViewModels.Pages.OnBoarding;
 
 public partial class OnBoardingViewModel : ViewModelBase
 {
+    private readonly INavigationService _navigationService;
+
+    public OnBoardingViewModel(INavigationService navigationService)
+    {
+        _navigationService = navigationService;
+    }
+
     [RelayCommand]
     public async Task LoginWithEmailAndPassword()
     {
-        await Shell.Current.GoToAsync(RoutePages.LOGIN_PAGE);
+        await _navigationService.GoToAsync(RoutePages.LOGIN_PAGE);
     }
 
     [RelayCommand]
     public void LoginWithGoogle()
     {
-        // Logic for logging in with email and password
+
     }
 
     [RelayCommand]
     public async Task RegisterUserAccount()
     {
-        await Shell.Current.GoToAsync(RoutePages.USER_REGISTER_ACCOUNT_PAGE);
+        await _navigationService.GoToAsync(RoutePages.USER_REGISTER_ACCOUNT_PAGE);
     }
 }
