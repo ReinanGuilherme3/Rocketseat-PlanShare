@@ -13,7 +13,7 @@
             Style="{StaticResource PageTitle}"
             Text="{Binding Texto}" />
 
-        <Entry Placeholder="Digite aqui..." Text="{Binding Texto}" />
+        <Entry Placeholder="Digite aqui..." Text="{Binding Model.Email}" />
 
         <components:EntryAndLabelComponent
             Title="Email"
