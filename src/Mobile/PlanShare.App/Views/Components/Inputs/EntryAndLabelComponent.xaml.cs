@@ -21,6 +21,9 @@ public partial class EntryAndLabelComponent : ContentView
         typeof(EntryAndLabelComponent),
         defaultValue: Keyboard.Default);
 
+    public static readonly BindableProperty TextValueProperty = BindableProperty
+       .Create(nameof(TextValue), typeof(string), typeof(EntryAndLabelComponent), string.Empty, BindingMode.TwoWay);
+
     public string Title
     {
         get => (string)GetValue(TitleProperty);
@@ -35,6 +38,12 @@ public partial class EntryAndLabelComponent : ContentView
     {
         get => (Keyboard)GetValue(KeyboardProperty);
         set => SetValue(KeyboardProperty, value);
+    }
+
+    public string TextValue
+    {
+        get => (string)GetValue(TextValueProperty);
+        set => SetValue(TextValueProperty, value);
     }
 
     public EntryAndLabelComponent()

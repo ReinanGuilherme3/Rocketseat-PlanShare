@@ -13,26 +13,33 @@
 
         <Label Margin="0,-10,0,10" Text="{Static resourceFiles:ResourceTexts.SUBTITLE_REGISTER_ACCOUNT}" />
 
-        <component:EntryAndLabelComponent Title="Nome" Placeholder="Reinan Guilherme" />
+        <component:EntryAndLabelComponent
+            Title="Nome"
+            Placeholder="Reinan Guilherme"
+            TextValue="{Binding Model.Name}" />
 
         <component:EntryAndLabelComponent
             Title="Email"
             Keyboard="Email"
-            Placeholder="reinan.guilherme@gmail.com" />
+            Placeholder="reinan.guilherme@gmail.com"
+            TextValue="{Binding Model.Email}" />
 
-        <component:EntryAndLabelPasswordComponent Title="Senha" />
+        <component:EntryAndLabelPasswordComponent Title="Senha" TextValue="{Binding Model.Password}" />
 
 
         <Button
             Margin="0,40,0,40"
             BackgroundColor="{AppThemeBinding Light={StaticResource HIGHLIGHT_COLOR_LIGHT},
                                               Dark={StaticResource HIGHLIGHT_COLOR_DARK}}"
+            Command="{Binding RegisterUserAccountCommand}"
             CornerRadius="20"
             HeightRequest="60"
             Text="Criar minha conta" />
 
         <VerticalStackLayout Padding="0,7,0,7" HeightRequest="40">
-
+            <VerticalStackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToLoginCommand}" />
+            </VerticalStackLayout.GestureRecognizers>
             <Label
                 FontSize="18"
                 HorizontalOptions="Center"
