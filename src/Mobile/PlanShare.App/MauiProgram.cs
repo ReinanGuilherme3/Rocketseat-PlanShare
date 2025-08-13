@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Configuration;
 using PlanShare.App.Constants;
 using PlanShare.App.Navigation;
 using PlanShare.App.Resources.Styles.Handlers;
@@ -7,6 +8,7 @@ using PlanShare.App.ViewModels.Pages.OnBoarding;
 using PlanShare.App.ViewModels.Pages.User.Register;
 using PlanShare.App.Views.Pages.Login.DoLogin;
 using PlanShare.App.Views.Pages.User.Register;
+using System.Reflection;
 
 namespace PlanShare.App;
 
@@ -21,6 +23,7 @@ public static class MauiProgram
             .AddPages()
             .AddNavigationService()
             .AddFonts()
+            .AddAppSettings()
             .ConfigureHandlers();
 
         return builder.Build();
@@ -61,5 +64,16 @@ public static class MauiProgram
         {
             CustomEntryHandler.Customize();
         });
+    }
+
+    private static MauiAppBuilder AddAppSettings(this MauiAppBuilder appBuilder)
+    {
+        using var fileStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("PlanShare.App.appsettings.json");
+
+        var config = new ConfigurationBuilder().AddJsonStream(fileStream!).Build();
+
+        appBuilder.Configuration.AddConfiguration(config);
+
+        return appBuilder;
     }
 }
