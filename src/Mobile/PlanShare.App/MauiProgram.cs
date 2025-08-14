@@ -4,6 +4,7 @@ using PlanShare.App.Constants;
 using PlanShare.App.Data.Network.Api;
 using PlanShare.App.Navigation;
 using PlanShare.App.Resources.Styles.Handlers;
+using PlanShare.App.UseCases.User.Register;
 using PlanShare.App.ViewModels.Pages.Login.DoLogin;
 using PlanShare.App.ViewModels.Pages.OnBoarding;
 using PlanShare.App.ViewModels.Pages.User.Register;
@@ -26,6 +27,8 @@ public static class MauiProgram
             .AddNavigationService()
             .AddFonts()
             .AddAppSettings()
+            .AddHttpClients()
+            .AddUseCases()
             .ConfigureHandlers();
 
         return builder.Build();
@@ -83,11 +86,18 @@ public static class MauiProgram
     {
         var apiBaseUrl = appBuilder.Configuration.GetValue<string>("ApiBaseUrl")!;
 
-        appBuilder.Services.AddRefitClient<IUserApiClient>()
+        appBuilder.Services.AddRefitClient<IUserApi>()
             .ConfigureHttpClient(client =>
             {
                 client.BaseAddress = new Uri(apiBaseUrl);
             });
+
+        return appBuilder;
+    }
+
+    private static MauiAppBuilder AddUseCases(this MauiAppBuilder appBuilder)
+    {
+        appBuilder.Services.AddTransient<IRegisterUserUseCase, RegisterUserUseCase>();
 
         return appBuilder;
     }
