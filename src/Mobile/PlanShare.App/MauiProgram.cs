@@ -112,7 +112,11 @@ public static class MauiProgram
     private static MauiAppBuilder AddStorage(this MauiAppBuilder appBuilder)
     {
         appBuilder.Services.AddSingleton<IUserStorage, UserStorage>();
-        appBuilder.Services.AddSingleton<ITokensStorage, TokensStorage>();
+
+        if (DeviceInfo.DeviceType == DeviceType.Virtual && DeviceInfo.Platform == DevicePlatform.iOS)
+            appBuilder.Services.AddSingleton<ITokensStorage, TokensStorageForVirtualDevice>();
+        else
+            appBuilder.Services.AddSingleton<ITokensStorage, TokensStorage>();
 
         return appBuilder;
     }

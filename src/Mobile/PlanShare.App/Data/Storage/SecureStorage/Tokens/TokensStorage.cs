@@ -12,7 +12,7 @@ public class TokensStorage : ITokensStorage
         await Microsoft.Maui.Storage.SecureStorage.SetAsync(REFRESH_TOKEN_KEY, tokens.RefreshToken);
     }
 
-    public async Task<Models.ValueObjects.Tokens?> Get()
+    public async Task<Models.ValueObjects.Tokens> Get()
     {
         var accessToken = await Microsoft.Maui.Storage.SecureStorage.GetAsync(ACCESS_TOKEN_KEY);
         var refreshToken = await Microsoft.Maui.Storage.SecureStorage.GetAsync(REFRESH_TOKEN_KEY);
