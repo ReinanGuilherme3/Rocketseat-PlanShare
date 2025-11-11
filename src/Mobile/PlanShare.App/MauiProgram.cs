@@ -2,8 +2,11 @@
 using Microsoft.Extensions.Configuration;
 using PlanShare.App.Constants;
 using PlanShare.App.Data.Network.Api;
+using PlanShare.App.Data.Storage.Preferences.User;
+using PlanShare.App.Data.Storage.SecureStorage.Tokens;
 using PlanShare.App.Navigation;
 using PlanShare.App.Resources.Styles.Handlers;
+using PlanShare.App.UseCases.User.Login.DoLogin;
 using PlanShare.App.UseCases.User.Register;
 using PlanShare.App.ViewModels.Pages.Login.DoLogin;
 using PlanShare.App.ViewModels.Pages.OnBoarding;
@@ -31,6 +34,7 @@ public static class MauiProgram
             .AddAppSettings()
             .AddHttpClients()
             .AddUseCases()
+            .AddStorage()
             .ConfigureHandlers();
 
         return builder.Build();
@@ -89,10 +93,10 @@ public static class MauiProgram
         var apiBaseUrl = appBuilder.Configuration.GetValue<string>("ApiBaseUrl")!;
 
         appBuilder.Services.AddRefitClient<IUserApi>()
-            .ConfigureHttpClient(client =>
-            {
-                client.BaseAddress = new Uri(apiBaseUrl);
-            });
+            .ConfigureHttpClient(client => client.BaseAddress = new Uri(apiBaseUrl));
+
+        appBuilder.Services.AddRefitClient<ILoginApi>()
+            .ConfigureHttpClient(client => client.BaseAddress = new Uri(apiBaseUrl));
 
         return appBuilder;
     }
@@ -100,6 +104,15 @@ public static class MauiProgram
     private static MauiAppBuilder AddUseCases(this MauiAppBuilder appBuilder)
     {
         appBuilder.Services.AddTransient<IRegisterUserUseCase, RegisterUserUseCase>();
+        appBuilder.Services.AddTransient<IDoLoginUseCase, DoLoginUseCase>();
+
+        return appBuilder;
+    }
+
+    private static MauiAppBuilder AddStorage(this MauiAppBuilder appBuilder)
+    {
+        appBuilder.Services.AddSingleton<IUserStorage, UserStorage>();
+        appBuilder.Services.AddSingleton<ITokensStorage, TokensStorage>();
 
         return appBuilder;
     }

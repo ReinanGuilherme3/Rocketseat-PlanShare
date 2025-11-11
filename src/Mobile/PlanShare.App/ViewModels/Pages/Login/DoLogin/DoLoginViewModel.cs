@@ -1,21 +1,30 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using PlanShare.App.Models;
+using PlanShare.App.UseCases.User.Login.DoLogin;
 
 namespace PlanShare.App.ViewModels.Pages.Login.DoLogin;
 public partial class DoLoginViewModel : ViewModelBase
 {
     [ObservableProperty]
-    public LoginModel model;
+    public Models.Login model;
 
-    public DoLoginViewModel()
+    private readonly IDoLoginUseCase _loginUseCase;
+
+    public DoLoginViewModel(IDoLoginUseCase loginUseCase)
     {
         Model = new();
+
+        _loginUseCase = loginUseCase;
     }
 
     [RelayCommand]
     public async Task DoLogin()
     {
-        var textoDigitado = Model;
+        StatusPage = StatusPage.Sending;
+
+        await _loginUseCase.Execute(Model);
+
+        StatusPage = StatusPage.Default;
     }
 }

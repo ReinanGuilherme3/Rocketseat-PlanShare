@@ -1,38 +1,37 @@
 ﻿using PlanShare.App.Data.Network.Api;
 using PlanShare.App.Data.Storage.Preferences.User;
 using PlanShare.App.Data.Storage.SecureStorage.Tokens;
-using PlanShare.App.Models;
 using PlanShare.Communication.Requests;
 
-namespace PlanShare.App.UseCases.User.Register;
+namespace PlanShare.App.UseCases.User.Login.DoLogin;
 
-public interface IRegisterUserUseCase
+public interface IDoLoginUseCase
 {
-    Task Execute(UserRegisterAccount model);
+    Task Execute(Models.Login model);
 }
-public class RegisterUserUseCase : IRegisterUserUseCase
+
+public class DoLoginUseCase : IDoLoginUseCase
 {
-    private readonly IUserApi _userApi;
+    private readonly ILoginApi _loginApi;
     private readonly IUserStorage _userStorage;
     private readonly ITokensStorage _tokensStorage;
 
-    public RegisterUserUseCase(IUserApi userApi, IUserStorage userStorage, ITokensStorage tokensStorage)
+    public DoLoginUseCase(ILoginApi loginApi, IUserStorage userStorage, ITokensStorage tokensStorage)
     {
-        _userApi = userApi;
+        _loginApi = loginApi;
         _userStorage = userStorage;
         _tokensStorage = tokensStorage;
     }
 
-    public async Task Execute(UserRegisterAccount model)
+    public async Task Execute(Models.Login model)
     {
-        var request = new RequestRegisterUserJson
+        var request = new RequestLoginJson
         {
-            Name = model.Name,
             Email = model.Email,
             Password = model.Password
         };
 
-        var response = await _userApi.Register(request);
+        var response = await _loginApi.Login(request);
 
         var user = new Models.ValueObjects.User(response.Id, response.Name);
         var tokens = new Models.ValueObjects.Tokens(response.Tokens.AccessToken, response.Tokens.RefreshToken);
